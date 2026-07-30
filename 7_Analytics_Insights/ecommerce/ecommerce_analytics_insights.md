@@ -55,6 +55,67 @@ select
 from order_counts;
 ```
 
+### 4. What is the average number of orders per customer?
+
+This metric helps estimate customer purchasing behavior and engagement.
+The query calculates the average number of orders grouped by customer.
+```
+select round(avg(order_count), 2) as avg_no_of_orders
+from (
+    select customer_id, count(order_id) as order_count 
+    from olist_orders 
+    group by customer_id
+) s;
+```
+
+### 5. Which states contribute the highest revenue?
+
+Identifying revenue-heavy regions helps prioritize supply chain and delivery resources.
+The query aggregates total item prices across orders by customer state.
+```
+select c.customer_state, sum(oi.price) as total_revenue
+from olist_customers  c
+join olist_orders o
+    on c.customer_id = o.customer_id
+join olist_order_items oi
+    on o.order_id = oi.order_id
+group by c.customer_state
+order by total_revenue desc;
+```
+
+### 6. Top 10 highest spending customers (Customer Lifetime Value)
+
+CLV helps businesses understand their most valuable customers.
+This query sums total spending per customer and returns the top 10.
+```
+select c.customer_unique_id, sum(oi.price) as customer_spending
+from olist_customers  c
+join olist_orders o
+    on c.customer_id = o.customer_id
+join olist_order_items oi
+    on o.order_id = oi.order_id
+group by c.customer_unique_id
+order by customer_spending desc
+limit 10;
+```
+
+## B. Order & Logistics Performance
+
+### 1. What is the average time from purchase to delivery?
+
+Delivery time is a key metric for logistics efficiency.
+This query computes the average duration between order placement and delivery.
+```
+select 
+    date_trunc('day', avg(order_delivered_customer_date - order_purchase_timestamp)) as avg_days
+from olist_orders;
+```
+
+
+
+
+
+
 
 
 
