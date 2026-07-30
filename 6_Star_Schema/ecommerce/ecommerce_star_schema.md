@@ -16,6 +16,7 @@ The star schema for this project uses:
  **1 Fact Table**
 -	Fact_Order_Items
 
+
  **8 Dimension Tables**
 -	Dim_Customers
 -	Dim_Products
@@ -26,6 +27,7 @@ The star schema for this project uses:
 -	Dim_Geolocation
 -	Dim_Product_Category_Translation
 
+
 Everything centers around Fact_Order_Items, because every transaction involves:
 -	A customer
 -	A product
@@ -33,6 +35,7 @@ Everything centers around Fact_Order_Items, because every transaction involves:
 -	A payment
 -	A delivery
 -	A review
+
 
 **Why Fact_Order_Items Is the Fact Table (Not Orders)**
 
@@ -42,6 +45,7 @@ E-commerce analysis is done at the item level because:
 - Most KPIs (GMV, revenue, freight cost, top products) depend on item-level granularity  
 
 Therefore, Fact_Order_Items is the correct fact table for retail analytics.
+
 
 ### 3. Fact Table Definition
   Fact: fact_order_items
@@ -61,6 +65,7 @@ Each row represents one product item within an order.
 | purchase_date | Order purchase date |
 | delivered_date | Final delivery date |
 | estimated_delivery_date | Expected delivery date |
+
 
 **Fact Table Grain**  
 1 row = 1 product item sold in 1 order  
@@ -88,6 +93,7 @@ LEFT JOIN olist_order_reviews r ON oi.order_id = r.order_id;
 
 ```
 
+
 ### 4. Dimension Tables
 
 Below are the logical definitions (NOT physically created).
@@ -103,6 +109,7 @@ Below are the logical definitions (NOT physically created).
 | customer_state           | Customer state    |
 
 
+
 **Dim_Products**
 
 | Field                         | Description               |
@@ -116,6 +123,7 @@ Below are the logical definitions (NOT physically created).
 | product_width_cm              | Product width             |
 
 
+
 **Dim_Sellers**
 
 | Field                  | Description      |
@@ -124,6 +132,7 @@ Below are the logical definitions (NOT physically created).
 | seller_zip_code_prefix | ZIP prefix       |
 | seller_city            | Seller city      |
 | seller_state           | Seller state     |
+
 
 
 **Dim_Orders**
@@ -140,6 +149,7 @@ Below are the logical definitions (NOT physically created).
 | order_estimated_delivery_date | Estimated delivery date                          |
 
 
+
 **Dim_Order_Payments**
 
 | Field                | Description                                |
@@ -149,6 +159,7 @@ Below are the logical definitions (NOT physically created).
 | payment_type         | Payment method (credit_card, boleto, etc.) |
 | payment_installments | Number of installments                     |
 | payment_value        | Payment amount                             |
+
 
 
 **Dim_Order_Reviews**
@@ -164,6 +175,7 @@ Below are the logical definitions (NOT physically created).
 | review_answer_timestamp | When seller responded      |
 
 
+
 **Dim_Geolocation**
 
 | Field                       | Description |
@@ -175,12 +187,14 @@ Below are the logical definitions (NOT physically created).
 | geolocation_state           | State       |
 
 
+
 **Dim_Category_Translation**
 
 | Field                         | Description                    |
 | ----------------------------- | ------------------------------ |
 | product_category_name         | Original category (Portuguese) |
 | product_category_name_english | Translated category (English)  |
+
 
 
 
@@ -221,6 +235,7 @@ act as supporting lookup dimensions rather than direct joins
 in all analytical queries. These dimensions are used selectively
 based on analysis requirements.
 
+
 ### 6. How This Schema Helps Analysis
 
 This structure enables fast, simple queries like:
@@ -233,6 +248,7 @@ This structure enables fast, simple queries like:
 
 Structured data → faster insights → cleaner dashboards.
 
+
 ### 7. Why I Included the Star Schema in This Project
 
 Even though I did not physically create the fact/dim tables in SQL, including a star schema:
@@ -241,6 +257,7 @@ Even though I did not physically create the fact/dim tables in SQL, including a 
 -	Mimics how real companies organize data
 -	Elevates the quality of the portfolio
 -	Helps recruiters see business thinking
+
 
 ### 8. Conclusion
 The star schema is a logical analytics foundation for this Olist dataset.
