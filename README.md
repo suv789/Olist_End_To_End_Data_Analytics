@@ -164,26 +164,47 @@ Interactive dashboards were built in **Power BI Desktop**, using validated analy
 **Preview (Summary Page):**
 ![E-Commerce Dashboard - Summary](8_PowerBI_Dashboard/Screenshots/ecommerce/Summary_Dashboard.png)
 
+-> [View full E-Commerce dashboard screenshots](8_PowerBI_Dashboard/Screenshots/ecommerce/)
 
+---
 
+### 2.  Marketing Funnel Performance Dashboard
 
+- End-to-end seller acquisition funnel
+- MQL -> Closed deal conversion
+- Lead origin performance
+- Revenue quality of acquired sellers
 
+-> [View Marketing Funnel dashboard screenshot](08_PowerBI_Dashboard/Screenshots/marketing/)
 
+---
 
+## Tools & Skills Demonstrated
 
+- SQL (PostgreSQL)
+- Data modeling (Star schema & funnel modeling)
+- Data validation & quality checks
+- Analytical problem solving
+- Power BI Desktop
+- DAX measures
+- Business-driven dashboard design
 
+---
 
+## Key Takeaways
 
+This project demonstrates:
 
+- End-to-end ownership of an analytics workflow
+- Correct modeling decisions based on data behavior
+- Ability to translate raw data into business insights
+- Strong alignment with real-world analytics engineering practices
 
+---
 
+## Final Note
 
+This project intentionally combines **technical rigor** with **business interpretation**, reflecting how analytics teams operate in production environments.
 
-
-
-
-
-
-
-
+It is designed not just to show *what* was built, but *why* it was built that way.
 
