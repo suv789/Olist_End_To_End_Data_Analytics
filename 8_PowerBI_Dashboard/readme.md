@@ -33,8 +33,10 @@ Due to GitHub file size limitations, the Power BI (.pbix) file is hosted externa
 
 ![E-Commerce Dashboard - Summary](Screenshots/ecommerce/Summary_Dashboard.png)
 
+- [View ecommerce dashboard screenshots](Screenshots/ecommerce/)
 
-
+### Marketing Funnel Dashboard
+- [View marketing funnel dashboard screenshot](Screenshots/marketing/)
 
 
 
