@@ -111,6 +111,72 @@ select
 from olist_orders;
 ```
 
+### 2. What is the difference between estimated and actual delivery?
+This helps measure delivery accuracy and customer experience.
+The query returns delays or early deliveries for every order.
+```
+select 
+    order_id, 
+    order_delivered_customer_date, 
+    order_estimated_delivery_date,
+    (order_delivered_customer_date - order_estimated_delivery_date) as estimate_and_actual_diff
+from olist_orders;
+```
+
+### 3. How many orders were delivered late?
+Late deliveries directly impact customer satisfaction.
+This query counts all orders delivered after the estimated delivery date.
+```
+select count(order_id)
+from olist_orders
+where order_delivered_customer_date > order_estimated_delivery_date;
+```
+
+### 4. How long do deliveries actually take vs estimates?
+
+This query prepares delivery duration metrics used for SLA and delay analysis.
+It computes actual delivery days and compares them with estimated delivery timelines.
+```
+select
+    order_id,
+    order_purchase_timestamp,
+    order_delivered_customer_date,
+    order_estimated_delivery_date,
+    (order_delivered_customer_date - order_purchase_timestamp) as actual_delivery_days,
+    (order_estimated_delivery_date - order_purchase_timestamp) as estimated_delivery_days
+from olist_orders
+where order_delivered_customer_date is not null;
+```
+
+### 5. Which sellers have the best delivery performance?
+This identifies sellers who ship quickly, helping improve marketplace quality.
+The query calculates average shipping time between approval and carrier pickup.
+```
+select 
+    oi.seller_id,
+    date_trunc('second', avg(o.order_delivered_carrier_date - o.order_approved_at)) as avg_shipping_days
+from olist_orders o
+join olist_order_items oi
+    on o.order_id = oi.order_id
+where o.order_delivered_carrier_date is not null
+  and o.order_approved_at is not null
+  and o.order_delivered_carrier_date >= o.order_approved_at
+group by oi.seller_id
+order by avg_shipping_days;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
