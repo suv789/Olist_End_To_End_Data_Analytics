@@ -118,6 +118,66 @@ Instead, it uses an **event-based funnel design**, reflecting real CRM and growt
 - `marketing_closed_deals` (bottom of funnel)
 
 
+These tables are linked via `mql_id` and analyzed through controlled joins.
+
+This approach supports:
+- Funnel drop-off analysis
+- Conversion rate calculations
+- Lead origin effectiveness
+- Seller acquisition quality evaluation
+
+ Documentation:  
+-> `6_star_schema/marketing/marketing_data_model.md`
+
+-> Knowing **when not to use a star schema** is as important as knowing how to design one.
+
+---
+
+## Analytical Insights (SQL)
+
+All business insights are derived using SQL queries written on top of the analytical models.
+
+Key questions answered include:
+
+- How many MQLs convert into sellers?
+- Which lead origins convert most effectively?
+- Which channels bring higher-value sellers?
+- How does seller quality vary by business type?
+- What are the revenue and fulfillment characteristics of acquired sellers?
+
+### SQL analysis:  
+-> `7_Analytics_Insights/`
+
+---
+## Power BI Dashboards
+
+Interactive dashboards were built in **Power BI Desktop**, using validated analytical tables and DAX measures.
+
+->  Power BI (.pbix) download links are documented inside `8_PowerBI_Dashboard/`.
+
+### 1.  E-Commerce Performance Dashboard
+
+- 5-page interactive dashboard
+- Covers customers, orders, sellers, products, and categories
+- Built on star schema analytical model
+
+**Preview (Summary Page):**
+![E-Commerce Dashboard - Summary](8_PowerBI_Dashboard/Screenshots/ecommerce/Summary_Dashboard.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
