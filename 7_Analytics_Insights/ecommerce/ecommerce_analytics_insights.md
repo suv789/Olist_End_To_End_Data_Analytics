@@ -237,6 +237,73 @@ order by units_sold desc;
 ```
 
 
+### 2. Which categories generate the highest revenue?
+
+Revenue contribution per category helps identify top-performing product types.
+This query sums item prices to determine total revenue by product category.
+```
+select 
+    p.product_category_name,
+    pct.product_category_name_english, 
+    sum(oi.price) as total_revenue
+from olist_order_items oi
+join olist_products p
+    on oi.product_id = p.product_id
+left join product_category_name_translation pct
+    on p.product_category_name = pct.product_category_name
+group by p.product_category_name, pct.product_category_name_english
+order by total_revenue desc;
+```
+
+### 3. What is the average price by category?
+
+Average price analysis helps identify premium vs. budget categories.
+This query calculates the mean selling price for each product category.
+```
+select 
+    p.product_category_name, 
+    pct.product_category_name_english, 
+    round(avg(oi.price),2) as avg_price
+from olist_products p
+join olist_order_items oi
+    on oi.product_id = p.product_id
+left join product_category_name_translation pct
+    on p.product_category_name = pct.product_category_name
+group by p.product_category_name, pct.product_category_name_english
+order by avg_price;
+````
+
+### 4. Which category has the highest freight charges?
+
+Freight cost insights help evaluate logistics expenses across categories.
+This query computes the average freight value per category.
+```
+select 
+    p.product_category_name, 
+    pct.product_category_name_english, 
+    round(avg(freight_value),2) as avg_freight_charges
+from olist_order_items oi
+join olist_products p
+    on oi.product_id = p.product_id
+left join product_category_name_translation pct
+    on p.product_category_name = pct.product_category_name
+group by p.product_category_name, pct.product_category_name_english
+order by avg_freight_charges desc;
+```
+
+### 5. Are heavier items more expensive?
+
+This helps determine whether product weight influences pricing.
+The query uses PostgreSQL’s corr() function to calculate weight–price correlation.
+```
+select 
+    corr(p.product_weight_g, oi.price) as weight_price_correlation 
+from olist_products p 
+join olist_order_items oi 
+    on p.product_id = oi.product_id 
+where p.product_weight_g is not null
+  and oi.price is not null;
+```
 
 
 
