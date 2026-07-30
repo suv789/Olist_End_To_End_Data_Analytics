@@ -30,7 +30,93 @@ This project uses publicly available datasets from Kaggle, spanning **two analyt
 - **Transactional E-Commerce Data**  
 - **CRM-Style Marketing Funnel Data**
 
-  
+Detailed dataset descriptions and source links are documented in:
+-> `2_data_sources/`
+
+### Domains Covered
+
+**E-Commerce Transactions**
+- Customers
+- Orders
+- Sellers
+- Products 
+- Categories
+- Payments
+- Reviews
+
+**Marketing Funnel**
+- Marketing Qualified Leads (MQLs)
+- Closed Deals (seller acquisition outcomes)
+
+The dataset intentionally combines **transactional e-commerce data** with **CRM-style marketing funnel data**, enabling both **operational analytics** and **growth-focused funnel analysis**.
+
+---
+
+## Project Architecture
+
+The repository is organized to mirror a real-world analytics workflow:
+
+- **1_project_Overview.md**  
+  Business context, problem framing, and analytical objectives
+
+- **2_data_sources**  
+  Dataset scope, source tables, and data lineage documentation
+
+- **3_ddl_table_creation**  
+  Staging and analytical table definitions (schema design)
+
+- **4_dml_data_load**  
+  Data ingestion and controlled transformation logic
+
+- **5_data_validation**  
+  Data quality checks, integrity validation, and sanity tests
+
+- **6_star_schema**  
+  Analytical data models  
+  - Star schema for e-commerce transactions  
+  - Funnel-based logical model for marketing data
+
+- **7_Analytical_Insights**  
+  SQL-driven business analysis and metric derivation
+
+- **8_power_bi_dashboard**  
+  Interactive Power BI dashboards and supporting screenshots
+
+Each folder represents a logical stage in the analytics lifecycle, from raw data to final insights.
+
+---
+
+## Data Modeling Strategy
+
+### 1. E-Commerce Analytics - Star Schema
+
+Transactional e-commerce data is modeled using a **star schema** to support fast querying and BI consumption.
+
+
+- **Fact table:** `Fact_Order_Items` (item-level grain)
+- **Dimension tables:** Customers, Products, Sellers, Orders, Payments, Reviews, Geolocation, Category Translation
+
+This model enables:
+- Revenue and GMV analysis
+- Delivery performance tracking
+- Product & seller performance ranking
+- Customer behavior analysis
+
+ Documentation:  
+-> `6_Star_Schema/ecommerce/ecommerce_star_schema.md`
+
+---
+
+### 2.  Marketing Funnel Analytics - Event-Based Funnel Model
+
+Marketing data is **intentionally NOT star-modeled**.
+
+Instead, it uses an **event-based funnel design**, reflecting real CRM and growth analytics practices.
+
+**Core tables:**
+- `marketing_qualified_leads` (top of funnel)
+- `marketing_closed_deals` (bottom of funnel)
+
 
 
 
