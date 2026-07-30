@@ -21,3 +21,18 @@
 ## Power BI Dashboard File
 
 Due to GitHub file size limitations, the Power BI (.pbix) file is hosted externally.
+
+ **Download the Power BI file:** 
+ "https://drive.google.com/drive/u/3/home"
+-> Open the file using Power BI Desktop to explore all interactions and filters.
+
+## Screenshots
+
+
+
+
+
+
+
+
+
